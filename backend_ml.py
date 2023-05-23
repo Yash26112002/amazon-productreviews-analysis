@@ -93,7 +93,7 @@ def sentiment_count(df):
 def get_top_positive_words(df):
     # [{'text': 'book', 'value': 837.6691894252903}, {'text': 'great', 'value': 663.3950063850567}]
     positive_df = df[df["sentiment_score"] == 1]
-    vectorizer_positive = TfidfVectorizer(max_features=50)
+    vectorizer_positive = TfidfVectorizer()
     tfidf_positive = vectorizer_positive.fit_transform(positive_df["review_clean"])
     feature_names_positive = vectorizer_positive.get_feature_names_out()
     tfidf_scores_positive = tfidf_positive.toarray().sum(axis=0)
@@ -105,7 +105,7 @@ def get_top_positive_words(df):
 
 def get_top_negative_words(df):
     negative_df = df[df["sentiment_score"] == -1]
-    vectorizer_negative = TfidfVectorizer(max_features=50)
+    vectorizer_negative = TfidfVectorizer()
     tfidf_negative = vectorizer_negative.fit_transform(negative_df["review_clean"])
     feature_names_negative = vectorizer_negative.get_feature_names_out()
     tfidf_scores_negative = tfidf_negative.toarray().sum(axis=0)
